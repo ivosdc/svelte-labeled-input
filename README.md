@@ -1,5 +1,5 @@
 # svelte-labeled-input
-- Web-component: `<labeled-input></labeled-inpute`
+- Web-component: `<labeled-input></labeled-input>`
 - or Svelte-component: `import LabeledInput from 'svelte-labeled-input'`
 
 css3 layout label transition input text field

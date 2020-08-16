@@ -1,6 +1,6 @@
 {
   "name": "svelte-labeled-input",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "<labeled-input> css3 styled input text field. Web-component or svelte component",
   "svelte": "src/index.js",
   "module": "dist/build/labeled-input.mjs",
@@ -9,6 +9,21 @@
     "build": "rollup -c",
     "prepublishOnly": "npm run build"
   },
+  "keywords": [
+    "webcomponent",
+    "svelte",
+    "input",
+    "css3",
+    "transition",
+    "self-contained",
+    "labeled",
+    "styled",
+    "text",
+    "clean code",
+    "easy",
+    "flexible",
+    "<labeled-input/>"
+  ],
   "author": "Ivo Bozic",
   "license": "MIT",
   "bugs": {
