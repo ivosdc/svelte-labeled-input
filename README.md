@@ -1,6 +1,6 @@
 # svelte-labeled-input
-- Web-component: `<crud-table></crud-table>`
-- or Svelte-component: `import SvelteGenericCrudTable from 'svelte-generic-crud-table'`
+- Web-component: `<labeled-input></labeled-inpute`
+- or Svelte-component: `import LabeledInput from 'svelte-labeled-input'`
 
 css3 layout label transition input text field
 
