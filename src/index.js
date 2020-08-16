@@ -1,3 +1,3 @@
-import LabeledInpu from './LabeledInput.svelte';
+import LabeledInput from './LabeledInput.svelte';
 
 export default LabeledInput;
