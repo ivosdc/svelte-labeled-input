@@ -1,6 +1,6 @@
 {
   "name": "svelte-labeled-input",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "<labeled-input> css3 styled input text field. Web-component or svelte component",
   "svelte": "src/index.js",
   "module": "dist/build/labeled-input.mjs",
