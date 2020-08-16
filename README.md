@@ -1,6 +1,8 @@
 # svelte-labeled-input
 css3 layout label transition input text field
 
+![GIF from the labeled input field](./readme-assets/svelte-labeled-input.gif)
+
 ## Install
 
 ```
