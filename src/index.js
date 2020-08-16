@@ -1,1 +1,3 @@
-export { default as default } from './LabeledInput.svelte';
+import LabeledInpu from './LabeledInput.svelte';
+
+export default LabeledInput;

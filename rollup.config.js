@@ -1,20 +1,29 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
-import pkg from './package.json';
 
-const name = pkg.name
-	.replace(/^(@\S+\/)?(svelte-)?(\S+)/, '$3')
-	.replace(/^\w/, m => m.toUpperCase())
-	.replace(/-\w/g, m => m[1].toUpperCase());
+const pkg = require('./package.json');
 
 export default {
-	input: 'src/index.js',
-	output: [
-		{ file: pkg.module, 'format': 'es' },
-		{ file: pkg.main, 'format': 'umd', name }
-	],
-	plugins: [
-		svelte(),
-		resolve()
-	]
+    input: [
+        'src/index.js'
+    ],
+    output: [
+        {file: pkg.module, format: 'iife', name: 'LabeledInput'},
+        {file: pkg.main, format: 'iife', name: 'LabeledInput'},
+    ],
+    plugins: [
+        svelte({
+            customElement: true,
+            tag: null,
+            emitCss: true,
+            css: (css) => {
+                css.write('dist/build/labeled-input.css');
+            }
+        }),
+        resolve({
+                extensions: ['.svelte', '.mjs', '.js', '.jsx', '.json'],
+                mainFields: ['jsnext:main', 'module', 'main']
+            }
+        )
+    ]
 };
