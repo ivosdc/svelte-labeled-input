@@ -1,7 +1,7 @@
 {
   "name": "svelte-labeled-input",
-  "version": "0.1.9",
-  "description": "<labeled-input> css3 styled input text field with input validation by own validator function. Password type implemented. Web-component or svelte component",
+  "version": "0.1.10",
+  "description": "<labeled-input> css3 styled input text field with input validation by own validator function. Error message and password type implemented. Web-component or svelte component",
   "svelte": "src/index.js",
   "module": "dist/build/labeled-input.mjs",
   "main": "dist/build/labeled-input.js",
@@ -16,6 +16,7 @@
     "web component",
     "self-contained",
     "own validator function",
+    "error message",
     "easy",
     "flexible",
     "ivolution.one",

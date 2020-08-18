@@ -10,7 +10,7 @@
 
     type = type === undefined ? "text" : type;
 
-   const defaultValidator = () => {
+    const defaultValidator = () => {
         return true
     }
 

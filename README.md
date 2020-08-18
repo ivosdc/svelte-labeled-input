@@ -87,12 +87,9 @@ The styled and labeled input "html"-element offers the optional parameters:
     let prename;
     let fullname;
 
-    // prename can only have 3 chars
+    // Example validator: Prename can only have 3 chars
     const prenameValidator = (value) => {
-        if (value.length > 3) {
-            return false
-        }
-        return true
+        return (value.length > 3) ? false : true;
     }
 </script>
 
