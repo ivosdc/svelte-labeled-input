@@ -4,17 +4,52 @@
     export let placeholder;
     export let value;
     export let label;
+    export let errormessage;
+    export let validator;
+    export let type;
+
+    type = type === undefined ? "text" : type;
+
+   const defaultValidator = () => {
+        return true
+    }
+
+    $: validator = validator === undefined ? defaultValidator() : validator;
+    let error = "";
+
+    function validate(event) {
+        if (validator === true) {
+            error = "";
+            return true;
+        }
+        error = errormessage;
+        return false;
+    }
+
 </script>
 
 
 <main>
     <div class="field">
-        <input bind:value={value} id={name} name={name} placeholder={placeholder} type="text"/>
+        {#if validate() === false}
+            <span class="error">{error}</span>
+        {/if}
+        {#if type === "password"}
+            <input bind:value={value} id={name} name={name} placeholder={placeholder} on:blur={validate}
+                   type="password"/>
+        {:else}
+            <input bind:value={value} id={name} name={name} placeholder={placeholder} on:blur={validate} type="text"/>
+        {/if}
         <label from={name}>{label}</label>
     </div>
 </main>
 
 <style>
+    .error {
+        color: red;
+        font-size: 75%;
+    }
+
     .field {
         display: flex;
         flex-flow: column-reverse;

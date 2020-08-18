@@ -2,7 +2,7 @@
 - Web-component: `<labeled-input></labeled-input>`
 - or Svelte-component: `import LabeledInput from 'svelte-labeled-input'`
 
-css3 layout label transition input text field
+css3 layout label transition input text field validates errormessage password style
 
 ![GIF from the labeled input field](./readme-assets/svelte-labeled-input.gif)
 
@@ -33,12 +33,16 @@ Use the component.
                   bind:value={prename}/>
 ```
 
-The styled and labeled input "html"-element offers the parameter:
+The styled and labeled input "html"-element offers the optional parameters:
 ```
     export let name;        // Name of the component in DOM
     export let placeholder; // Placeholder for no input value
     export let value;       // Value of the input field. 
     export let label;       // Label of the input field
+
+    export let type         // default "text" or "password" for dotted input values.
+    export let validator;   // boolean function. Evaluates to true or false
+    export let errormessage;// Errormessage for validation error
 ```
 
 ### Web-Component
@@ -53,7 +57,6 @@ The styled and labeled input "html"-element offers the parameter:
     <link rel='stylesheet' href='https://ivosdc.github.io/svelte-labeled-input/build/labeled-input.css'>
     <script defer src='https://ivosdc.github.io/svelte-labeled-input/build/labeled-input.js'></script>
 </head>
-
 <body>
 <hr>
 <labeled-input name="prename"
@@ -65,6 +68,8 @@ The styled and labeled input "html"-element offers the parameter:
                label="Name:"
                value=""></labeled-input><hr>
 </body>
+<script>
+</script>
 </template>
 </custom-element-demo>
 ```
@@ -81,11 +86,21 @@ The styled and labeled input "html"-element offers the parameter:
 
     let prename;
     let fullname;
+
+    // prename can only have 3 chars
+    const prenameValidator = (value) => {
+        if (value.length > 3) {
+            return false
+        }
+        return true
+    }
 </script>
 
 <main>
     <hr>
     <LabeledInput name="prename"
+                  errormessage="Prename can only have 3 characters."
+                  validator={prenameValidator(prename)}
                   placeholder="Your prename"
                   label="Prename:"
                   bind:value={prename}/>
@@ -93,6 +108,11 @@ The styled and labeled input "html"-element offers the parameter:
                   placeholder="Your name"
                   label="Family name:"
                   bind:value={fullname}/>
+    <LabeledInput name="password"
+                  placeholder="Enter password"
+                  label="Password:"
+                  type="password"
+                  bind:value={password}/>
 </main>
 
 ```
