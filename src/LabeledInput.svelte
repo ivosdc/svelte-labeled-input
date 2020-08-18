@@ -1,5 +1,6 @@
 <svelte:options tag={'labeled-input'}/>
 <script>
+    import {afterUpdate} from 'svelte'
     export let name;
     export let placeholder;
     export let value;
@@ -15,9 +16,10 @@
     }
 
     $: validator = validator === undefined ? defaultValidator() : validator;
+
     let error = "";
 
-    function validate(event) {
+    const validate = (event) => {
         if (validator === true) {
             error = "";
             return true;
@@ -31,9 +33,7 @@
 
 <main>
     <div class="field">
-        {#if validate() === false}
-            <span class="error">{error}</span>
-        {/if}
+        <span class="error">{error}</span>
         {#if type === "password"}
             <input bind:value={value} id={name} name={name} placeholder={placeholder} on:blur={validate}
                    type="password"/>
