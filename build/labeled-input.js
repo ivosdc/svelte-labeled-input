@@ -293,7 +293,7 @@ var LabeledInput = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen(input, "input", /*input_input_handler_1*/ ctx[10]),
+    					listen(input, "input", /*input_input_handler_1*/ ctx[11]),
     					listen(input, "blur", /*validate*/ ctx[6])
     				];
 
@@ -325,7 +325,7 @@ var LabeledInput = (function () {
     	};
     }
 
-    // (37:8) {#if type === "password"}
+    // (40:8) {#if type === "password"}
     function create_if_block(ctx) {
     	let input;
     	let mounted;
@@ -345,7 +345,7 @@ var LabeledInput = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen(input, "input", /*input_input_handler*/ ctx[9]),
+    					listen(input, "input", /*input_input_handler*/ ctx[10]),
     					listen(input, "blur", /*validate*/ ctx[6])
     				];
 
@@ -386,6 +386,8 @@ var LabeledInput = (function () {
     	let t2;
     	let label_1;
     	let t3;
+    	let mounted;
+    	let dispose;
 
     	function select_block_type(ctx, dirty) {
     		if (/*type*/ ctx[1] === "password") return create_if_block;
@@ -421,6 +423,11 @@ var LabeledInput = (function () {
     			append(div, t2);
     			append(div, label_1);
     			append(label_1, t3);
+
+    			if (!mounted) {
+    				dispose = listen(label_1, "click", /*setFocus*/ ctx[7]);
+    				mounted = true;
+    			}
     		},
     		p(ctx, [dirty]) {
     			if (dirty & /*error*/ 32) set_data(t0, /*error*/ ctx[5]);
@@ -448,6 +455,8 @@ var LabeledInput = (function () {
     		d(detaching) {
     			if (detaching) detach(main);
     			if_block.d();
+    			mounted = false;
+    			dispose();
     		}
     	};
     }
@@ -478,6 +487,11 @@ var LabeledInput = (function () {
     		return false;
     	};
 
+    	function setFocus(e) {
+    		let elem = document.getElementById(name);
+    		elem.focus();
+    	}
+
     	function input_input_handler() {
     		value = this.value;
     		$$invalidate(0, value);
@@ -493,14 +507,14 @@ var LabeledInput = (function () {
     		if ("placeholder" in $$props) $$invalidate(3, placeholder = $$props.placeholder);
     		if ("value" in $$props) $$invalidate(0, value = $$props.value);
     		if ("label" in $$props) $$invalidate(4, label = $$props.label);
-    		if ("errormessage" in $$props) $$invalidate(8, errormessage = $$props.errormessage);
-    		if ("validator" in $$props) $$invalidate(7, validator = $$props.validator);
+    		if ("errormessage" in $$props) $$invalidate(9, errormessage = $$props.errormessage);
+    		if ("validator" in $$props) $$invalidate(8, validator = $$props.validator);
     		if ("type" in $$props) $$invalidate(1, type = $$props.type);
     	};
 
     	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*validator*/ 128) {
-    			 $$invalidate(7, validator = validator === undefined ? defaultValidator() : validator);
+    		if ($$self.$$.dirty & /*validator*/ 256) {
+    			 $$invalidate(8, validator = validator === undefined ? defaultValidator() : validator);
     		}
     	};
 
@@ -512,6 +526,7 @@ var LabeledInput = (function () {
     		label,
     		error,
     		validate,
+    		setFocus,
     		validator,
     		errormessage,
     		input_input_handler,
@@ -529,8 +544,8 @@ var LabeledInput = (function () {
     			placeholder: 3,
     			value: 0,
     			label: 4,
-    			errormessage: 8,
-    			validator: 7,
+    			errormessage: 9,
+    			validator: 8,
     			type: 1
     		});
 
@@ -587,7 +602,7 @@ var LabeledInput = (function () {
     	}
 
     	get errormessage() {
-    		return this.$$.ctx[8];
+    		return this.$$.ctx[9];
     	}
 
     	set errormessage(errormessage) {
@@ -596,7 +611,7 @@ var LabeledInput = (function () {
     	}
 
     	get validator() {
-    		return this.$$.ctx[7];
+    		return this.$$.ctx[8];
     	}
 
     	set validator(validator) {
