@@ -1,6 +1,5 @@
 <svelte:options tag={'labeled-input'}/>
 <script>
-    import {afterUpdate} from 'svelte'
     export let name;
     export let placeholder;
     export let value;
@@ -27,6 +26,10 @@
         error = errormessage;
         return false;
     }
+    function setFocus(e) {
+        let elem = document.getElementById(name);
+        elem.focus();
+    }
 
 </script>
 
@@ -40,7 +43,7 @@
         {:else}
             <input bind:value={value} id={name} name={name} placeholder={placeholder} on:blur={validate} type="text"/>
         {/if}
-        <label from={name}>{label}</label>
+        <label on:click={setFocus} from={name}>{label}</label>
     </div>
 </main>
 
