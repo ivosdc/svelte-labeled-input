@@ -410,7 +410,7 @@ var LabeledInput = (function () {
     			t3 = text(/*label*/ ctx[4]);
     			this.c = noop;
     			attr(span, "class", "error");
-    			attr(label_1, "from", /*name*/ ctx[2]);
+    			attr(label_1, "for", /*name*/ ctx[2]);
     			attr(div, "class", "field");
     		},
     		m(target, anchor) {
@@ -447,7 +447,7 @@ var LabeledInput = (function () {
     			if (dirty & /*label*/ 16) set_data(t3, /*label*/ ctx[4]);
 
     			if (dirty & /*name*/ 4) {
-    				attr(label_1, "from", /*name*/ ctx[2]);
+    				attr(label_1, "for", /*name*/ ctx[2]);
     			}
     		},
     		i: noop,
