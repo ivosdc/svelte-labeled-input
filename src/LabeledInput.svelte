@@ -43,7 +43,7 @@
         {:else}
             <input bind:value={value} id={name} name={name} placeholder={placeholder} on:blur={validate} type="text"/>
         {/if}
-        <label on:click={setFocus} from={name}>{label}</label>
+        <label on:click={setFocus} for={name}>{label}</label>
     </div>
 </main>
 
