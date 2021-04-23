@@ -1,6 +1,6 @@
 {
   "name": "svelte-labeled-input",
-  "version": "0.1.13",
+  "version": "0.1.15",
   "description": "<labeled-input> css3 styled input text field with input validation by own validator function. Error message and password type implemented. Web-component or svelte component",
   "svelte": "src/index.js",
   "module": "dist/build/labeled-input.mjs",
@@ -36,7 +36,7 @@
     "@rollup/plugin-node-resolve": "^6.0.0",
     "rollup": "^1.20.0",
     "rollup-plugin-svelte": "^5.0.0",
-    "svelte": "^3.0.0"
+    "svelte": "^3.37.0"
   },
   "files": [
     "src",

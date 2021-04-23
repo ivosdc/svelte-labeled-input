@@ -1,20 +1,17 @@
 <svelte:options tag={'labeled-input'}/>
 <script>
-    export let name;
-    export let placeholder;
-    export let value;
-    export let label;
-    export let errormessage;
-    export let validator;
-    export let type;
-
-    type = type === undefined ? "text" : type;
+    export let name = '';
+    export let placeholder = '';
+    export let value = '';
+    export let label = '';
+    export let errormessage = '';
+    export let validator = ()=>{true};
+    export let type = 'text';
+    export let size = 20;
 
     const defaultValidator = () => {
         return true
     }
-
-    $: validator = validator === undefined ? defaultValidator() : validator;
 
     let error = "";
 
@@ -38,10 +35,10 @@
     <div class="field">
         <span class="error">{error}</span>
         {#if type === "password"}
-            <input bind:value={value} id={name} name={name} placeholder={placeholder} on:blur={validate}
+            <input bind:value={value} id={name} name={name} placeholder={placeholder} size={size} on:blur={validate}
                    type="password"/>
         {:else}
-            <input bind:value={value} id={name} name={name} placeholder={placeholder} on:blur={validate} type="text"/>
+            <input bind:value={value} id={name} name={name} placeholder={placeholder} size={size} on:blur={validate} type="text"/>
         {/if}
         <label on:click={setFocus} for={name}>{label}</label>
     </div>
