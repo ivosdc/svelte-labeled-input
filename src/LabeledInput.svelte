@@ -53,7 +53,6 @@
     .field {
         display: flex;
         flex-flow: column-reverse;
-        margin-bottom: 1.5em;
     }
 
     label, input {
