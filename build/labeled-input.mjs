@@ -60,6 +60,13 @@ var LabeledInput = (function () {
     function set_input_value(input, value) {
         input.value = value == null ? '' : value;
     }
+    function attribute_to_object(attributes) {
+        const result = {};
+        for (const attribute of attributes) {
+            result[attribute.name] = attribute.value;
+        }
+        return result;
+    }
 
     let current_component;
     function set_current_component(component) {
@@ -95,6 +102,7 @@ var LabeledInput = (function () {
                 set_current_component(component);
                 update(component.$$);
             }
+            set_current_component(null);
             dirty_components.length = 0;
             while (binding_callbacks.length)
                 binding_callbacks.pop()();
@@ -135,22 +143,24 @@ var LabeledInput = (function () {
             block.i(local);
         }
     }
-    function mount_component(component, target, anchor) {
+    function mount_component(component, target, anchor, customElement) {
         const { fragment, on_mount, on_destroy, after_update } = component.$$;
         fragment && fragment.m(target, anchor);
-        // onMount happens before the initial afterUpdate
-        add_render_callback(() => {
-            const new_on_destroy = on_mount.map(run).filter(is_function);
-            if (on_destroy) {
-                on_destroy.push(...new_on_destroy);
-            }
-            else {
-                // Edge case - component was destroyed immediately,
-                // most likely as a result of a binding initialising
-                run_all(new_on_destroy);
-            }
-            component.$$.on_mount = [];
-        });
+        if (!customElement) {
+            // onMount happens before the initial afterUpdate
+            add_render_callback(() => {
+                const new_on_destroy = on_mount.map(run).filter(is_function);
+                if (on_destroy) {
+                    on_destroy.push(...new_on_destroy);
+                }
+                else {
+                    // Edge case - component was destroyed immediately,
+                    // most likely as a result of a binding initialising
+                    run_all(new_on_destroy);
+                }
+                component.$$.on_mount = [];
+            });
+        }
         after_update.forEach(add_render_callback);
     }
     function destroy_component(component, detaching) {
@@ -175,7 +185,6 @@ var LabeledInput = (function () {
     function init(component, options, instance, create_fragment, not_equal, props, dirty = [-1]) {
         const parent_component = current_component;
         set_current_component(component);
-        const prop_values = options.props || {};
         const $$ = component.$$ = {
             fragment: null,
             ctx: null,
@@ -187,9 +196,10 @@ var LabeledInput = (function () {
             // lifecycle
             on_mount: [],
             on_destroy: [],
+            on_disconnect: [],
             before_update: [],
             after_update: [],
-            context: new Map(parent_component ? parent_component.$$.context : []),
+            context: new Map(parent_component ? parent_component.$$.context : options.context || []),
             // everything else
             callbacks: blank_object(),
             dirty,
@@ -197,7 +207,7 @@ var LabeledInput = (function () {
         };
         let ready = false;
         $$.ctx = instance
-            ? instance(component, prop_values, (i, ret, ...rest) => {
+            ? instance(component, options.props || {}, (i, ret, ...rest) => {
                 const value = rest.length ? rest[0] : ret;
                 if ($$.ctx && not_equal($$.ctx[i], $$.ctx[i] = value)) {
                     if (!$$.skip_bound && $$.bound[i])
@@ -226,7 +236,7 @@ var LabeledInput = (function () {
             }
             if (options.intro)
                 transition_in(component.$$.fragment);
-            mount_component(component, options.target, options.anchor);
+            mount_component(component, options.target, options.anchor, options.customElement);
             flush();
         }
         set_current_component(parent_component);
@@ -239,6 +249,8 @@ var LabeledInput = (function () {
                 this.attachShadow({ mode: 'open' });
             }
             connectedCallback() {
+                const { on_mount } = this.$$;
+                this.$$.on_disconnect = on_mount.map(run).filter(is_function);
                 // @ts-ignore todo: improve typings
                 for (const key in this.$$.slotted) {
                     // @ts-ignore todo: improve typings
@@ -247,6 +259,9 @@ var LabeledInput = (function () {
             }
             attributeChangedCallback(attr, _oldValue, newValue) {
                 this[attr] = newValue;
+            }
+            disconnectedCallback() {
+                run_all(this.$$.on_disconnect);
             }
             $destroy() {
                 destroy_component(this, 1);
@@ -272,7 +287,7 @@ var LabeledInput = (function () {
         };
     }
 
-    /* src/LabeledInput.svelte generated by Svelte v3.24.1 */
+    /* src/LabeledInput.svelte generated by Svelte v3.37.0 */
 
     function create_else_block(ctx) {
     	let input;
@@ -282,9 +297,10 @@ var LabeledInput = (function () {
     	return {
     		c() {
     			input = element("input");
-    			attr(input, "id", /*name*/ ctx[2]);
-    			attr(input, "name", /*name*/ ctx[2]);
-    			attr(input, "placeholder", /*placeholder*/ ctx[3]);
+    			attr(input, "id", /*name*/ ctx[1]);
+    			attr(input, "name", /*name*/ ctx[1]);
+    			attr(input, "placeholder", /*placeholder*/ ctx[2]);
+    			attr(input, "size", /*size*/ ctx[5]);
     			attr(input, "type", "text");
     		},
     		m(target, anchor) {
@@ -293,24 +309,28 @@ var LabeledInput = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen(input, "input", /*input_input_handler_1*/ ctx[11]),
-    					listen(input, "blur", /*validate*/ ctx[6])
+    					listen(input, "input", /*input_input_handler_1*/ ctx[12]),
+    					listen(input, "blur", /*validate*/ ctx[7])
     				];
 
     				mounted = true;
     			}
     		},
     		p(ctx, dirty) {
-    			if (dirty & /*name*/ 4) {
-    				attr(input, "id", /*name*/ ctx[2]);
+    			if (dirty & /*name*/ 2) {
+    				attr(input, "id", /*name*/ ctx[1]);
     			}
 
-    			if (dirty & /*name*/ 4) {
-    				attr(input, "name", /*name*/ ctx[2]);
+    			if (dirty & /*name*/ 2) {
+    				attr(input, "name", /*name*/ ctx[1]);
     			}
 
-    			if (dirty & /*placeholder*/ 8) {
-    				attr(input, "placeholder", /*placeholder*/ ctx[3]);
+    			if (dirty & /*placeholder*/ 4) {
+    				attr(input, "placeholder", /*placeholder*/ ctx[2]);
+    			}
+
+    			if (dirty & /*size*/ 32) {
+    				attr(input, "size", /*size*/ ctx[5]);
     			}
 
     			if (dirty & /*value*/ 1 && input.value !== /*value*/ ctx[0]) {
@@ -325,7 +345,7 @@ var LabeledInput = (function () {
     	};
     }
 
-    // (40:8) {#if type === "password"}
+    // (37:8) {#if type === "password"}
     function create_if_block(ctx) {
     	let input;
     	let mounted;
@@ -334,9 +354,10 @@ var LabeledInput = (function () {
     	return {
     		c() {
     			input = element("input");
-    			attr(input, "id", /*name*/ ctx[2]);
-    			attr(input, "name", /*name*/ ctx[2]);
-    			attr(input, "placeholder", /*placeholder*/ ctx[3]);
+    			attr(input, "id", /*name*/ ctx[1]);
+    			attr(input, "name", /*name*/ ctx[1]);
+    			attr(input, "placeholder", /*placeholder*/ ctx[2]);
+    			attr(input, "size", /*size*/ ctx[5]);
     			attr(input, "type", "password");
     		},
     		m(target, anchor) {
@@ -345,24 +366,28 @@ var LabeledInput = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen(input, "input", /*input_input_handler*/ ctx[10]),
-    					listen(input, "blur", /*validate*/ ctx[6])
+    					listen(input, "input", /*input_input_handler*/ ctx[11]),
+    					listen(input, "blur", /*validate*/ ctx[7])
     				];
 
     				mounted = true;
     			}
     		},
     		p(ctx, dirty) {
-    			if (dirty & /*name*/ 4) {
-    				attr(input, "id", /*name*/ ctx[2]);
+    			if (dirty & /*name*/ 2) {
+    				attr(input, "id", /*name*/ ctx[1]);
     			}
 
-    			if (dirty & /*name*/ 4) {
-    				attr(input, "name", /*name*/ ctx[2]);
+    			if (dirty & /*name*/ 2) {
+    				attr(input, "name", /*name*/ ctx[1]);
     			}
 
-    			if (dirty & /*placeholder*/ 8) {
-    				attr(input, "placeholder", /*placeholder*/ ctx[3]);
+    			if (dirty & /*placeholder*/ 4) {
+    				attr(input, "placeholder", /*placeholder*/ ctx[2]);
+    			}
+
+    			if (dirty & /*size*/ 32) {
+    				attr(input, "size", /*size*/ ctx[5]);
     			}
 
     			if (dirty & /*value*/ 1 && input.value !== /*value*/ ctx[0]) {
@@ -390,7 +415,7 @@ var LabeledInput = (function () {
     	let dispose;
 
     	function select_block_type(ctx, dirty) {
-    		if (/*type*/ ctx[1] === "password") return create_if_block;
+    		if (/*type*/ ctx[4] === "password") return create_if_block;
     		return create_else_block;
     	}
 
@@ -402,15 +427,15 @@ var LabeledInput = (function () {
     			main = element("main");
     			div = element("div");
     			span = element("span");
-    			t0 = text(/*error*/ ctx[5]);
+    			t0 = text(/*error*/ ctx[6]);
     			t1 = space();
     			if_block.c();
     			t2 = space();
     			label_1 = element("label");
-    			t3 = text(/*label*/ ctx[4]);
+    			t3 = text(/*label*/ ctx[3]);
     			this.c = noop;
     			attr(span, "class", "error");
-    			attr(label_1, "for", /*name*/ ctx[2]);
+    			attr(label_1, "for", /*name*/ ctx[1]);
     			attr(div, "class", "field");
     		},
     		m(target, anchor) {
@@ -425,12 +450,12 @@ var LabeledInput = (function () {
     			append(label_1, t3);
 
     			if (!mounted) {
-    				dispose = listen(label_1, "click", /*setFocus*/ ctx[7]);
+    				dispose = listen(label_1, "click", /*setFocus*/ ctx[8]);
     				mounted = true;
     			}
     		},
     		p(ctx, [dirty]) {
-    			if (dirty & /*error*/ 32) set_data(t0, /*error*/ ctx[5]);
+    			if (dirty & /*error*/ 64) set_data(t0, /*error*/ ctx[6]);
 
     			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
     				if_block.p(ctx, dirty);
@@ -444,10 +469,10 @@ var LabeledInput = (function () {
     				}
     			}
 
-    			if (dirty & /*label*/ 16) set_data(t3, /*label*/ ctx[4]);
+    			if (dirty & /*label*/ 8) set_data(t3, /*label*/ ctx[3]);
 
-    			if (dirty & /*name*/ 4) {
-    				attr(label_1, "for", /*name*/ ctx[2]);
+    			if (dirty & /*name*/ 2) {
+    				attr(label_1, "for", /*name*/ ctx[1]);
     			}
     		},
     		i: noop,
@@ -462,28 +487,27 @@ var LabeledInput = (function () {
     }
 
     function instance($$self, $$props, $$invalidate) {
-    	let { name } = $$props;
-    	let { placeholder } = $$props;
-    	let { value } = $$props;
-    	let { label } = $$props;
-    	let { errormessage } = $$props;
-    	let { validator } = $$props;
-    	let { type } = $$props;
-    	type = type === undefined ? "text" : type;
+    	let { name = "" } = $$props;
+    	let { placeholder = "" } = $$props;
+    	let { value = "" } = $$props;
+    	let { label = "" } = $$props;
+    	let { errormessage = "" } = $$props;
 
-    	const defaultValidator = () => {
-    		return true;
-    	};
+    	let { validator = () => {
+    	} } = $$props;
+
+    	let { type = "text" } = $$props;
+    	let { size = 20 } = $$props;
 
     	let error = "";
 
     	const validate = event => {
     		if (validator === true) {
-    			$$invalidate(5, error = "");
+    			$$invalidate(6, error = "");
     			return true;
     		}
 
-    		$$invalidate(5, error = errormessage);
+    		$$invalidate(6, error = errormessage);
     		return false;
     	};
 
@@ -503,32 +527,28 @@ var LabeledInput = (function () {
     	}
 
     	$$self.$$set = $$props => {
-    		if ("name" in $$props) $$invalidate(2, name = $$props.name);
-    		if ("placeholder" in $$props) $$invalidate(3, placeholder = $$props.placeholder);
+    		if ("name" in $$props) $$invalidate(1, name = $$props.name);
+    		if ("placeholder" in $$props) $$invalidate(2, placeholder = $$props.placeholder);
     		if ("value" in $$props) $$invalidate(0, value = $$props.value);
-    		if ("label" in $$props) $$invalidate(4, label = $$props.label);
+    		if ("label" in $$props) $$invalidate(3, label = $$props.label);
     		if ("errormessage" in $$props) $$invalidate(9, errormessage = $$props.errormessage);
-    		if ("validator" in $$props) $$invalidate(8, validator = $$props.validator);
-    		if ("type" in $$props) $$invalidate(1, type = $$props.type);
-    	};
-
-    	$$self.$$.update = () => {
-    		if ($$self.$$.dirty & /*validator*/ 256) {
-    			 $$invalidate(8, validator = validator === undefined ? defaultValidator() : validator);
-    		}
+    		if ("validator" in $$props) $$invalidate(10, validator = $$props.validator);
+    		if ("type" in $$props) $$invalidate(4, type = $$props.type);
+    		if ("size" in $$props) $$invalidate(5, size = $$props.size);
     	};
 
     	return [
     		value,
-    		type,
     		name,
     		placeholder,
     		label,
+    		type,
+    		size,
     		error,
     		validate,
     		setFocus,
-    		validator,
     		errormessage,
+    		validator,
     		input_input_handler,
     		input_input_handler_1
     	];
@@ -539,15 +559,27 @@ var LabeledInput = (function () {
     		super();
     		this.shadowRoot.innerHTML = `<style>.error{color:red;font-size:75%}.field{display:flex;flex-flow:column-reverse;margin-bottom:1.5em}label,input{transition:all 0.2s;touch-action:manipulation}label{position:relative;font-size:0.8em;top:0em}input{font-size:1em;border:0;border-bottom:1px solid #ccc;font-family:inherit;font-size:1em;font-weight:200;-webkit-appearance:none;border-radius:0;padding:0;cursor:text}input:focus{outline:0;border-bottom:1px solid #666}input:placeholder-shown+label{cursor:text;max-width:0%;white-space:nowrap;overflow:unset;text-overflow:ellipsis;transform-origin:left top;transform:translate(0, 1.2em) scale(1.2)}::-webkit-input-placeholder{opacity:0;transition:inherit}::-moz-placeholder{opacity:0;transition:inherit}input:focus::-webkit-input-placeholder{opacity:0.5}input:focus::-moz-placeholder{opacity:0.5}input:not(:placeholder-shown)+label,input:focus+label{transform:translate(0, 0) scale(1);cursor:pointer}</style>`;
 
-    		init(this, { target: this.shadowRoot }, instance, create_fragment, safe_not_equal, {
-    			name: 2,
-    			placeholder: 3,
-    			value: 0,
-    			label: 4,
-    			errormessage: 9,
-    			validator: 8,
-    			type: 1
-    		});
+    		init(
+    			this,
+    			{
+    				target: this.shadowRoot,
+    				props: attribute_to_object(this.attributes),
+    				customElement: true
+    			},
+    			instance,
+    			create_fragment,
+    			safe_not_equal,
+    			{
+    				name: 1,
+    				placeholder: 2,
+    				value: 0,
+    				label: 3,
+    				errormessage: 9,
+    				validator: 10,
+    				type: 4,
+    				size: 5
+    			}
+    		);
 
     		if (options) {
     			if (options.target) {
@@ -562,11 +594,20 @@ var LabeledInput = (function () {
     	}
 
     	static get observedAttributes() {
-    		return ["name", "placeholder", "value", "label", "errormessage", "validator", "type"];
+    		return [
+    			"name",
+    			"placeholder",
+    			"value",
+    			"label",
+    			"errormessage",
+    			"validator",
+    			"type",
+    			"size"
+    		];
     	}
 
     	get name() {
-    		return this.$$.ctx[2];
+    		return this.$$.ctx[1];
     	}
 
     	set name(name) {
@@ -575,7 +616,7 @@ var LabeledInput = (function () {
     	}
 
     	get placeholder() {
-    		return this.$$.ctx[3];
+    		return this.$$.ctx[2];
     	}
 
     	set placeholder(placeholder) {
@@ -593,7 +634,7 @@ var LabeledInput = (function () {
     	}
 
     	get label() {
-    		return this.$$.ctx[4];
+    		return this.$$.ctx[3];
     	}
 
     	set label(label) {
@@ -611,7 +652,7 @@ var LabeledInput = (function () {
     	}
 
     	get validator() {
-    		return this.$$.ctx[8];
+    		return this.$$.ctx[10];
     	}
 
     	set validator(validator) {
@@ -620,11 +661,20 @@ var LabeledInput = (function () {
     	}
 
     	get type() {
-    		return this.$$.ctx[1];
+    		return this.$$.ctx[4];
     	}
 
     	set type(type) {
     		this.$set({ type });
+    		flush();
+    	}
+
+    	get size() {
+    		return this.$$.ctx[5];
+    	}
+
+    	set size(size) {
+    		this.$set({ size });
     		flush();
     	}
     }
