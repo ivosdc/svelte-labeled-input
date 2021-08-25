@@ -14,7 +14,7 @@ export default {
     plugins: [
         svelte({
             customElement: true,
-            tag: null,
+            tag: 'labeled-input',
             emitCss: true,
             css: (css) => {
                 css.write('dist/build/labeled-input.css');

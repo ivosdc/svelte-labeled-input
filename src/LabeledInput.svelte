@@ -1,4 +1,3 @@
-<svelte:options tag={'labeled-input'}/>
 <script>
     export let name = '';
     export let placeholder = '';
