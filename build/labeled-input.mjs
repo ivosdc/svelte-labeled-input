@@ -345,7 +345,7 @@ var LabeledInput = (function () {
     	};
     }
 
-    // (37:8) {#if type === "password"}
+    // (36:8) {#if type === "password"}
     function create_if_block(ctx) {
     	let input;
     	let mounted;
