@@ -1,7 +1,7 @@
 <script>
     import {createEventDispatcher} from "svelte";
 
-    export let name = '';
+    export let id = '';
     export let placeholder = '';
     export let value = '';
     export let label = '';
@@ -14,6 +14,7 @@
     export let rows = '2';
     export let min = '';
     export let max = '';
+    export let name = '';
 
     export let shadowed = false;
 
@@ -40,7 +41,9 @@
     }
 
     function setFocus(e) {
-        let elem = e.target.closest(name);
+        console.log(e)
+        let elem = e.target.closest('#' + id);
+        console.log(elem)
         elem.focus();
     }
 
@@ -63,7 +66,7 @@
                     detail: details
                 }))
         } else {
-            dispatch(name, details);
+            dispatch(id, details);
         }
     }
 
@@ -73,7 +76,7 @@
 <div class="field">
     <span class="error">{errormessage}</span>
     {#if type === "password"}
-        <input bind:value={value} id={name} name={name} placeholder={placeholder} size={size}
+        <input bind:value={value} id={id === '' ? name : id} name={name} placeholder={placeholder} size={size}
                on:input={dispatchInput}
                on:keyup={handleKeyUp}
                on:change={(e) => {dispatch('change', value)}}
@@ -81,7 +84,7 @@
                on:keypress={(e) => {dispatch('keypress', value)}}
                type="password" tabindex="0"/>
     {:else if type === "area"}
-            <textarea id={name} name={name} bind:value={value} placeholder={placeholder} rows={rows} cols={size}
+            <textarea id={id === '' ? name : id} name={name} bind:value={value} placeholder={placeholder} rows={rows} cols={size}
                       on:input={dispatchInput}
                       on:keyup={handleKeyUp}
                       on:change={(e) => {dispatch('change', value)}}
@@ -89,7 +92,7 @@
                       on:keypress={(e) => {dispatch('keypress', value)}}
                       tabindex="0"></textarea>
     {:else if type === "text"}
-        <input bind:value={value} id={name} name={name} placeholder={placeholder} size={size}
+        <input bind:value={value} id={id === '' ? name : id} name={name} placeholder={placeholder} size={size}
                on:input={dispatchInput}
                on:keyup={handleKeyUp}
                on:change={(e) => {dispatch('change', value)}}
@@ -97,7 +100,7 @@
                on:keypress={(e) => {dispatch('keypress', value)}}
                type="text" tabindex="0"/>
     {:else if type === "number"}
-        <input bind:value={value} id={name} name={name} placeholder={placeholder}
+        <input bind:value={value} id={id === '' ? name : id} name={name} placeholder={placeholder}
                min={min}
                max={max}
                on:input={dispatchInput}
@@ -107,7 +110,7 @@
                on:keypress={(e) => {dispatch('keypress', value)}}
                type="number" tabindex="0"/>
     {/if}
-    <label on:click={setFocus} for={name}>{label}</label>
+    <label on:click={setFocus} for={id}>{label}</label>
 </div>
 
 
