@@ -93,7 +93,7 @@ Events:
 </head>
 <body>
 <hr>
-<labeled-input id="prename"
+<labeled-input name="prename"
                placeholder="Your prename"
                label="Prename:"
                value=""></labeled-input>
@@ -102,7 +102,7 @@ Events:
                label="Name:"
                value=""></labeled-input><hr>
                
-<labeled-input id="interval"
+<labeled-input name="interval"
                 placeholder="Interval in days"
                 label="Interval :"
                 type="number"
@@ -110,7 +110,7 @@ Events:
                 max="21"
                 value="5"></labeled-input>
                 
-<labeled-input id="description"
+<labeled-input name="description"
                 placeholder="Description"
                 label="Description:"
                 type="area"
