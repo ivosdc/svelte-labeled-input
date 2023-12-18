@@ -31,18 +31,53 @@ Use the component.
                   placeholder="Your prename"
                   label="Prename:"
                   bind:value={prename}/>
+                  
+    <LabeledInput name="interval"
+                placeholder="Interval in days"
+                label="Interval :"
+                type="number"
+                min="1"
+                max="21"
+                on:blur={setInterval}
+                on:keypress={handleKeys}
+                bind:value={daysInterval} />
+                
+    <LabeledInput on:error={(e)=>{errormessage = e.detail}}
+                name="description"
+                placeholder="Description"
+                label="Description:"
+                validator={descriptionValidator}
+                errormessage={errormessage}
+                type="area"
+                size="50"
+                rows="4"
+                bind:value={description} />
 ```
 
 The styled and labeled input "html"-element offers the optional parameters:
 ```
-    export let name;        // Name of the component in DOM
+    export let name;        // id and name of the component in DOM
     export let placeholder; // Placeholder for no input value
     export let value;       // Value of the input field. 
     export let label;       // Label of the input field
-
-    export let type         // default "text" or "password" for dotted input values.
-    export let validator;   // boolean function. Evaluates to true or false
+    export let type         // default "text". ["text", "area", "number", "password"]
+    export let validator;   // text validation function. Returns [true || false]. Dispatches an Error-Event on `false`
     export let errormessage;// Errormessage for validation error
+    
+    min, max for inpt{type=number}
+    
+    size for inpt{type=text}
+    
+    size, rows for textarea
+```
+
+Events:
+```
+    on:input={...}    // checks the input with the `validator` function and fires input-event with the `value`
+    on:keyup={...}    // fires input-event with the `key`
+    on:change={...}   // fires change-event with the `value`
+    on:blur={...}     // fires blur-event with the `value`
+    on:keypress={...} // fires keypress-event with the `value`
 ```
 
 ### Web-Component
@@ -67,6 +102,22 @@ The styled and labeled input "html"-element offers the optional parameters:
                placeholder="Your family name"
                label="Name:"
                value=""></labeled-input><hr>
+               
+<labeled-input name="interval"
+                placeholder="Interval in days"
+                label="Interval :"
+                type="number"
+                min="1"
+                max="21"
+                value="5"></labeled-input>
+                
+<labeled-input name="description"
+                placeholder="Description"
+                label="Description:"
+                type="area"
+                size="50"
+                rows="4"
+                value="I'm a description."></labeled-input>
 </body>
 <script>
 </script>

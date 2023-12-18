@@ -1,9 +1,9 @@
 **/.project
 **/*.iml
 **/.DS_Store
-**/.idea
-.idea
+**/.idea/**
+/.idea/
 .settings
-/node_modules
+/node_modules/
 /dist/build
-/coverage
+/coverage/
