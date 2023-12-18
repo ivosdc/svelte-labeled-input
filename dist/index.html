@@ -3,14 +3,14 @@
 <head>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width,initial-scale=1'>
-    <title>Generic Crud Table</title>
+    <title>labeled-input</title>
     <link rel='stylesheet' href='build/labeled-input.css'>
     <script defer src='build/labeled-input.js'></script>
 </head>
 
 <body>
 <h1>&lt;labeled-input&gt;&lt;/labeled-input&gt;</h1>
-<p>Agnostic web-component for css3 labeled input text field..</p>
+<p>Labeled Input/Textarea field with validation.</p>
 <span style="background-color: #dddddd; padding: 0.4em; display:inline-block">&gt; npm install svelte-labeled-input</span>
 <p></p>
 <hr>
@@ -22,14 +22,16 @@
                placeholder="Your family name"
                label="Name:"
                value=""></labeled-input>
-<hr />
-<labeled-input name="interval"
-               placeholder="Interval in days"
-               label="Interval :"
-               type="number"
-               min="1"
-               max="21"
-               value="5"></labeled-input>
+
+<div style="width: 60px;">
+    <labeled-input name="interval"
+                   placeholder="Interval in days"
+                   label="Interval :"
+                   type="number"
+                   min="1"
+                   max="21"
+                   value="5"></labeled-input>
+</div>
 
 <labeled-input name="description"
                placeholder="Description"
@@ -39,9 +41,7 @@
                rows="4"
                value="I'm a description."></labeled-input>
 <hr>
-</span style="text-align: right"><a href="https://ivolution.one">ivolution.one product - MIT License</a>
-<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7V5M288MUT7GE&source=url">donate
-</a></p>
+<span style="text-align: right"><a href="https://ivolution.one">ivolution.one / MIT License</a></span>
 </body>
 <script src='labeled-input-config.js'></script>
 </html>

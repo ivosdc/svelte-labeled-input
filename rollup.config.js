@@ -8,8 +8,8 @@ export default {
         'src/index.js'
     ],
     output: [
-        {file: pkg.module, format: 'iife', name: 'LabeledInput'},
-        {file: pkg.main, format: 'iife', name: 'LabeledInput'},
+        {file: pkg.module, format: 'es', name: 'LabeledInput'},
+        {file: pkg.main, format: 'es', name: 'LabeledInput'},
     ],
     plugins: [
         svelte({
