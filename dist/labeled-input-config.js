@@ -1,10 +1,10 @@
 //config labeled-input
 
 
-let fields = document.querySelector('labeled-input');
+let prename = document.getElementById('prename');
 
-fields[0].setAttribute('shadowed', 'true');
+prename.setAttribute('shadowed', 'true');
 
-fields[0].addEventListener('input', (e) => {
+prename.addEventListener('input', (e) => {
     console.log('input');
 });

@@ -40,7 +40,7 @@
     }
 
     function setFocus(e) {
-        let elem = document.getElementById(name);
+        let elem = e.target.closest(name);
         elem.focus();
     }
 
