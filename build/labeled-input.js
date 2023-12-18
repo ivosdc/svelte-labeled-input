@@ -391,8 +391,8 @@ var LabeledInput = (function () {
     	return {
     		c() {
     			input = element("input");
-    			attr(input, "id", /*name*/ ctx[1]);
-    			attr(input, "name", /*name*/ ctx[1]);
+    			attr(input, "id", /*id*/ ctx[1]);
+    			attr(input, "name", /*id*/ ctx[1]);
     			attr(input, "placeholder", /*placeholder*/ ctx[2]);
     			attr(input, "min", /*min*/ ctx[8]);
     			attr(input, "max", /*max*/ ctx[9]);
@@ -417,12 +417,12 @@ var LabeledInput = (function () {
     			}
     		},
     		p(ctx, dirty) {
-    			if (dirty[0] & /*name*/ 2) {
-    				attr(input, "id", /*name*/ ctx[1]);
+    			if (dirty[0] & /*id*/ 2) {
+    				attr(input, "id", /*id*/ ctx[1]);
     			}
 
-    			if (dirty[0] & /*name*/ 2) {
-    				attr(input, "name", /*name*/ ctx[1]);
+    			if (dirty[0] & /*id*/ 2) {
+    				attr(input, "name", /*id*/ ctx[1]);
     			}
 
     			if (dirty[0] & /*placeholder*/ 4) {
@@ -458,8 +458,8 @@ var LabeledInput = (function () {
     	return {
     		c() {
     			input = element("input");
-    			attr(input, "id", /*name*/ ctx[1]);
-    			attr(input, "name", /*name*/ ctx[1]);
+    			attr(input, "id", /*id*/ ctx[1]);
+    			attr(input, "name", /*id*/ ctx[1]);
     			attr(input, "placeholder", /*placeholder*/ ctx[2]);
     			attr(input, "size", /*size*/ ctx[6]);
     			attr(input, "type", "text");
@@ -483,12 +483,12 @@ var LabeledInput = (function () {
     			}
     		},
     		p(ctx, dirty) {
-    			if (dirty[0] & /*name*/ 2) {
-    				attr(input, "id", /*name*/ ctx[1]);
+    			if (dirty[0] & /*id*/ 2) {
+    				attr(input, "id", /*id*/ ctx[1]);
     			}
 
-    			if (dirty[0] & /*name*/ 2) {
-    				attr(input, "name", /*name*/ ctx[1]);
+    			if (dirty[0] & /*id*/ 2) {
+    				attr(input, "name", /*id*/ ctx[1]);
     			}
 
     			if (dirty[0] & /*placeholder*/ 4) {
@@ -520,8 +520,8 @@ var LabeledInput = (function () {
     	return {
     		c() {
     			textarea = element("textarea");
-    			attr(textarea, "id", /*name*/ ctx[1]);
-    			attr(textarea, "name", /*name*/ ctx[1]);
+    			attr(textarea, "id", /*id*/ ctx[1]);
+    			attr(textarea, "name", /*id*/ ctx[1]);
     			attr(textarea, "placeholder", /*placeholder*/ ctx[2]);
     			attr(textarea, "rows", /*rows*/ ctx[7]);
     			attr(textarea, "cols", /*size*/ ctx[6]);
@@ -545,12 +545,12 @@ var LabeledInput = (function () {
     			}
     		},
     		p(ctx, dirty) {
-    			if (dirty[0] & /*name*/ 2) {
-    				attr(textarea, "id", /*name*/ ctx[1]);
+    			if (dirty[0] & /*id*/ 2) {
+    				attr(textarea, "id", /*id*/ ctx[1]);
     			}
 
-    			if (dirty[0] & /*name*/ 2) {
-    				attr(textarea, "name", /*name*/ ctx[1]);
+    			if (dirty[0] & /*id*/ 2) {
+    				attr(textarea, "name", /*id*/ ctx[1]);
     			}
 
     			if (dirty[0] & /*placeholder*/ 4) {
@@ -586,8 +586,8 @@ var LabeledInput = (function () {
     	return {
     		c() {
     			input = element("input");
-    			attr(input, "id", /*name*/ ctx[1]);
-    			attr(input, "name", /*name*/ ctx[1]);
+    			attr(input, "id", /*id*/ ctx[1]);
+    			attr(input, "name", /*id*/ ctx[1]);
     			attr(input, "placeholder", /*placeholder*/ ctx[2]);
     			attr(input, "size", /*size*/ ctx[6]);
     			attr(input, "type", "password");
@@ -611,12 +611,12 @@ var LabeledInput = (function () {
     			}
     		},
     		p(ctx, dirty) {
-    			if (dirty[0] & /*name*/ 2) {
-    				attr(input, "id", /*name*/ ctx[1]);
+    			if (dirty[0] & /*id*/ 2) {
+    				attr(input, "id", /*id*/ ctx[1]);
     			}
 
-    			if (dirty[0] & /*name*/ 2) {
-    				attr(input, "name", /*name*/ ctx[1]);
+    			if (dirty[0] & /*id*/ 2) {
+    				attr(input, "name", /*id*/ ctx[1]);
     			}
 
     			if (dirty[0] & /*placeholder*/ 4) {
@@ -672,7 +672,7 @@ var LabeledInput = (function () {
     			t3 = text(/*label*/ ctx[3]);
     			this.c = noop;
     			attr(span, "class", "error");
-    			attr(label_1, "for", /*name*/ ctx[1]);
+    			attr(label_1, "for", /*id*/ ctx[1]);
     			attr(div, "class", "field");
     		},
     		m(target, anchor) {
@@ -707,8 +707,8 @@ var LabeledInput = (function () {
 
     			if (dirty[0] & /*label*/ 8) set_data(t3, /*label*/ ctx[3]);
 
-    			if (dirty[0] & /*name*/ 2) {
-    				attr(label_1, "for", /*name*/ ctx[1]);
+    			if (dirty[0] & /*id*/ 2) {
+    				attr(label_1, "for", /*id*/ ctx[1]);
     			}
     		},
     		i: noop,
@@ -727,7 +727,7 @@ var LabeledInput = (function () {
     }
 
     function instance($$self, $$props, $$invalidate) {
-    	let { name = '' } = $$props;
+    	let { id = '' } = $$props;
     	let { placeholder = '' } = $$props;
     	let { value = '' } = $$props;
     	let { label = '' } = $$props;
@@ -769,7 +769,7 @@ var LabeledInput = (function () {
     	};
 
     	function setFocus(e) {
-    		let elem = e.target.closest(name);
+    		let elem = e.target.closest(id);
     		elem.focus();
     	}
 
@@ -786,7 +786,7 @@ var LabeledInput = (function () {
     		if (shadowed) {
     			event.target.dispatchEvent(new CustomEvent(name, { composed: true, detail: details }));
     		} else {
-    			dispatch(name, details);
+    			dispatch(id, details);
     		}
     	}
 
@@ -859,7 +859,7 @@ var LabeledInput = (function () {
     	};
 
     	$$self.$$set = $$props => {
-    		if ('name' in $$props) $$invalidate(1, name = $$props.name);
+    		if ('id' in $$props) $$invalidate(1, id = $$props.id);
     		if ('placeholder' in $$props) $$invalidate(2, placeholder = $$props.placeholder);
     		if ('value' in $$props) $$invalidate(0, value = $$props.value);
     		if ('label' in $$props) $$invalidate(3, label = $$props.label);
@@ -875,7 +875,7 @@ var LabeledInput = (function () {
 
     	return [
     		value,
-    		name,
+    		id,
     		placeholder,
     		label,
     		errormessage,
@@ -927,7 +927,7 @@ var LabeledInput = (function () {
     			create_fragment,
     			safe_not_equal,
     			{
-    				name: 1,
+    				id: 1,
     				placeholder: 2,
     				value: 0,
     				label: 3,
@@ -958,7 +958,7 @@ var LabeledInput = (function () {
 
     	static get observedAttributes() {
     		return [
-    			"name",
+    			"id",
     			"placeholder",
     			"value",
     			"label",
@@ -973,12 +973,12 @@ var LabeledInput = (function () {
     		];
     	}
 
-    	get name() {
+    	get id() {
     		return this.$$.ctx[1];
     	}
 
-    	set name(name) {
-    		this.$$set({ name });
+    	set id(id) {
+    		this.$$set({ id });
     		flush();
     	}
 
