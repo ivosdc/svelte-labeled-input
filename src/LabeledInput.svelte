@@ -41,7 +41,10 @@
 
     function setFocus(e) {
         console.log(e)
-        let elem = e.target.closest(name);
+        let elem = e.target.closest('input').querySelector(`[name=${name}]`);
+        if (elem === null) {
+            elem = e.target.closest('textarea').querySelector(`[name=${name}]`);
+        }
         console.log(elem)
         elem.focus();
     }
