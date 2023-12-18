@@ -1,7 +1,7 @@
 //config labeled-input
 
 
-let prename = document.getElementById('prename');
+let prename = document.getElementById('prename').;
 console.log(prename)
 /*
 prename.setAttribute('shadowed', 'true');
