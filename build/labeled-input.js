@@ -449,7 +449,7 @@ var LabeledInput = (function () {
     	};
     }
 
-    // (93:30) 
+    // (96:30) 
     function create_if_block_2(ctx) {
     	let input;
     	let mounted;
@@ -511,7 +511,7 @@ var LabeledInput = (function () {
     	};
     }
 
-    // (85:30) 
+    // (88:30) 
     function create_if_block_1(ctx) {
     	let textarea;
     	let mounted;
@@ -577,7 +577,7 @@ var LabeledInput = (function () {
     	};
     }
 
-    // (77:4) {#if type === "password"}
+    // (80:4) {#if type === "password"}
     function create_if_block(ctx) {
     	let input;
     	let mounted;
@@ -770,7 +770,12 @@ var LabeledInput = (function () {
 
     	function setFocus(e) {
     		console.log(e);
-    		let elem = e.target.closest(name);
+    		let elem = e.target.closest('input').querySelector(`[name=${name}]`);
+
+    		if (elem === null) {
+    			elem = e.target.closest('textarea').querySelector(`[name=${name}]`);
+    		}
+
     		console.log(elem);
     		elem.focus();
     	}
