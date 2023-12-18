@@ -385,18 +385,17 @@ var LabeledInput = (function () {
 
     function create_if_block_3(ctx) {
     	let input;
-    	let input_id_value;
     	let mounted;
     	let dispose;
 
     	return {
     		c() {
     			input = element("input");
-    			attr(input, "id", input_id_value = /*id*/ ctx[1] === '' ? /*name*/ ctx[10] : /*id*/ ctx[1]);
-    			attr(input, "name", /*name*/ ctx[10]);
-    			attr(input, "placeholder", /*placeholder*/ ctx[2]);
-    			attr(input, "min", /*min*/ ctx[8]);
-    			attr(input, "max", /*max*/ ctx[9]);
+    			attr(input, "id", /*name*/ ctx[9]);
+    			attr(input, "name", /*name*/ ctx[9]);
+    			attr(input, "placeholder", /*placeholder*/ ctx[1]);
+    			attr(input, "min", /*min*/ ctx[7]);
+    			attr(input, "max", /*max*/ ctx[8]);
     			attr(input, "type", "number");
     			attr(input, "tabindex", "0");
     		},
@@ -406,36 +405,36 @@ var LabeledInput = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen(input, "input", /*input_input_handler_2*/ ctx[29]),
-    					listen(input, "input", /*dispatchInput*/ ctx[14]),
-    					listen(input, "keyup", /*handleKeyUp*/ ctx[13]),
-    					listen(input, "change", /*change_handler_3*/ ctx[30]),
-    					listen(input, "blur", /*blur_handler_3*/ ctx[31]),
-    					listen(input, "keypress", /*keypress_handler_3*/ ctx[32])
+    					listen(input, "input", /*input_input_handler_2*/ ctx[28]),
+    					listen(input, "input", /*dispatchInput*/ ctx[13]),
+    					listen(input, "keyup", /*handleKeyUp*/ ctx[12]),
+    					listen(input, "change", /*change_handler_3*/ ctx[29]),
+    					listen(input, "blur", /*blur_handler_3*/ ctx[30]),
+    					listen(input, "keypress", /*keypress_handler_3*/ ctx[31])
     				];
 
     				mounted = true;
     			}
     		},
     		p(ctx, dirty) {
-    			if (dirty[0] & /*id, name*/ 1026 && input_id_value !== (input_id_value = /*id*/ ctx[1] === '' ? /*name*/ ctx[10] : /*id*/ ctx[1])) {
-    				attr(input, "id", input_id_value);
+    			if (dirty[0] & /*name*/ 512) {
+    				attr(input, "id", /*name*/ ctx[9]);
     			}
 
-    			if (dirty[0] & /*name*/ 1024) {
-    				attr(input, "name", /*name*/ ctx[10]);
+    			if (dirty[0] & /*name*/ 512) {
+    				attr(input, "name", /*name*/ ctx[9]);
     			}
 
-    			if (dirty[0] & /*placeholder*/ 4) {
-    				attr(input, "placeholder", /*placeholder*/ ctx[2]);
+    			if (dirty[0] & /*placeholder*/ 2) {
+    				attr(input, "placeholder", /*placeholder*/ ctx[1]);
     			}
 
-    			if (dirty[0] & /*min*/ 256) {
-    				attr(input, "min", /*min*/ ctx[8]);
+    			if (dirty[0] & /*min*/ 128) {
+    				attr(input, "min", /*min*/ ctx[7]);
     			}
 
-    			if (dirty[0] & /*max*/ 512) {
-    				attr(input, "max", /*max*/ ctx[9]);
+    			if (dirty[0] & /*max*/ 256) {
+    				attr(input, "max", /*max*/ ctx[8]);
     			}
 
     			if (dirty[0] & /*value*/ 1 && to_number(input.value) !== /*value*/ ctx[0]) {
@@ -450,20 +449,19 @@ var LabeledInput = (function () {
     	};
     }
 
-    // (94:30) 
+    // (93:30) 
     function create_if_block_2(ctx) {
     	let input;
-    	let input_id_value;
     	let mounted;
     	let dispose;
 
     	return {
     		c() {
     			input = element("input");
-    			attr(input, "id", input_id_value = /*id*/ ctx[1] === '' ? /*name*/ ctx[10] : /*id*/ ctx[1]);
-    			attr(input, "name", /*name*/ ctx[10]);
-    			attr(input, "placeholder", /*placeholder*/ ctx[2]);
-    			attr(input, "size", /*size*/ ctx[6]);
+    			attr(input, "id", /*name*/ ctx[9]);
+    			attr(input, "name", /*name*/ ctx[9]);
+    			attr(input, "placeholder", /*placeholder*/ ctx[1]);
+    			attr(input, "size", /*size*/ ctx[5]);
     			attr(input, "type", "text");
     			attr(input, "tabindex", "0");
     		},
@@ -473,32 +471,32 @@ var LabeledInput = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen(input, "input", /*input_input_handler_1*/ ctx[25]),
-    					listen(input, "input", /*dispatchInput*/ ctx[14]),
-    					listen(input, "keyup", /*handleKeyUp*/ ctx[13]),
-    					listen(input, "change", /*change_handler_2*/ ctx[26]),
-    					listen(input, "blur", /*blur_handler_2*/ ctx[27]),
-    					listen(input, "keypress", /*keypress_handler_2*/ ctx[28])
+    					listen(input, "input", /*input_input_handler_1*/ ctx[24]),
+    					listen(input, "input", /*dispatchInput*/ ctx[13]),
+    					listen(input, "keyup", /*handleKeyUp*/ ctx[12]),
+    					listen(input, "change", /*change_handler_2*/ ctx[25]),
+    					listen(input, "blur", /*blur_handler_2*/ ctx[26]),
+    					listen(input, "keypress", /*keypress_handler_2*/ ctx[27])
     				];
 
     				mounted = true;
     			}
     		},
     		p(ctx, dirty) {
-    			if (dirty[0] & /*id, name*/ 1026 && input_id_value !== (input_id_value = /*id*/ ctx[1] === '' ? /*name*/ ctx[10] : /*id*/ ctx[1])) {
-    				attr(input, "id", input_id_value);
+    			if (dirty[0] & /*name*/ 512) {
+    				attr(input, "id", /*name*/ ctx[9]);
     			}
 
-    			if (dirty[0] & /*name*/ 1024) {
-    				attr(input, "name", /*name*/ ctx[10]);
+    			if (dirty[0] & /*name*/ 512) {
+    				attr(input, "name", /*name*/ ctx[9]);
     			}
 
-    			if (dirty[0] & /*placeholder*/ 4) {
-    				attr(input, "placeholder", /*placeholder*/ ctx[2]);
+    			if (dirty[0] & /*placeholder*/ 2) {
+    				attr(input, "placeholder", /*placeholder*/ ctx[1]);
     			}
 
-    			if (dirty[0] & /*size*/ 64) {
-    				attr(input, "size", /*size*/ ctx[6]);
+    			if (dirty[0] & /*size*/ 32) {
+    				attr(input, "size", /*size*/ ctx[5]);
     			}
 
     			if (dirty[0] & /*value*/ 1 && input.value !== /*value*/ ctx[0]) {
@@ -513,21 +511,20 @@ var LabeledInput = (function () {
     	};
     }
 
-    // (86:30) 
+    // (85:30) 
     function create_if_block_1(ctx) {
     	let textarea;
-    	let textarea_id_value;
     	let mounted;
     	let dispose;
 
     	return {
     		c() {
     			textarea = element("textarea");
-    			attr(textarea, "id", textarea_id_value = /*id*/ ctx[1] === '' ? /*name*/ ctx[10] : /*id*/ ctx[1]);
-    			attr(textarea, "name", /*name*/ ctx[10]);
-    			attr(textarea, "placeholder", /*placeholder*/ ctx[2]);
-    			attr(textarea, "rows", /*rows*/ ctx[7]);
-    			attr(textarea, "cols", /*size*/ ctx[6]);
+    			attr(textarea, "id", /*name*/ ctx[9]);
+    			attr(textarea, "name", /*name*/ ctx[9]);
+    			attr(textarea, "placeholder", /*placeholder*/ ctx[1]);
+    			attr(textarea, "rows", /*rows*/ ctx[6]);
+    			attr(textarea, "cols", /*size*/ ctx[5]);
     			attr(textarea, "tabindex", "0");
     		},
     		m(target, anchor) {
@@ -536,36 +533,36 @@ var LabeledInput = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen(textarea, "input", /*textarea_input_handler*/ ctx[21]),
-    					listen(textarea, "input", /*dispatchInput*/ ctx[14]),
-    					listen(textarea, "keyup", /*handleKeyUp*/ ctx[13]),
-    					listen(textarea, "change", /*change_handler_1*/ ctx[22]),
-    					listen(textarea, "blur", /*blur_handler_1*/ ctx[23]),
-    					listen(textarea, "keypress", /*keypress_handler_1*/ ctx[24])
+    					listen(textarea, "input", /*textarea_input_handler*/ ctx[20]),
+    					listen(textarea, "input", /*dispatchInput*/ ctx[13]),
+    					listen(textarea, "keyup", /*handleKeyUp*/ ctx[12]),
+    					listen(textarea, "change", /*change_handler_1*/ ctx[21]),
+    					listen(textarea, "blur", /*blur_handler_1*/ ctx[22]),
+    					listen(textarea, "keypress", /*keypress_handler_1*/ ctx[23])
     				];
 
     				mounted = true;
     			}
     		},
     		p(ctx, dirty) {
-    			if (dirty[0] & /*id, name*/ 1026 && textarea_id_value !== (textarea_id_value = /*id*/ ctx[1] === '' ? /*name*/ ctx[10] : /*id*/ ctx[1])) {
-    				attr(textarea, "id", textarea_id_value);
+    			if (dirty[0] & /*name*/ 512) {
+    				attr(textarea, "id", /*name*/ ctx[9]);
     			}
 
-    			if (dirty[0] & /*name*/ 1024) {
-    				attr(textarea, "name", /*name*/ ctx[10]);
+    			if (dirty[0] & /*name*/ 512) {
+    				attr(textarea, "name", /*name*/ ctx[9]);
     			}
 
-    			if (dirty[0] & /*placeholder*/ 4) {
-    				attr(textarea, "placeholder", /*placeholder*/ ctx[2]);
+    			if (dirty[0] & /*placeholder*/ 2) {
+    				attr(textarea, "placeholder", /*placeholder*/ ctx[1]);
     			}
 
-    			if (dirty[0] & /*rows*/ 128) {
-    				attr(textarea, "rows", /*rows*/ ctx[7]);
+    			if (dirty[0] & /*rows*/ 64) {
+    				attr(textarea, "rows", /*rows*/ ctx[6]);
     			}
 
-    			if (dirty[0] & /*size*/ 64) {
-    				attr(textarea, "cols", /*size*/ ctx[6]);
+    			if (dirty[0] & /*size*/ 32) {
+    				attr(textarea, "cols", /*size*/ ctx[5]);
     			}
 
     			if (dirty[0] & /*value*/ 1) {
@@ -580,20 +577,19 @@ var LabeledInput = (function () {
     	};
     }
 
-    // (78:4) {#if type === "password"}
+    // (77:4) {#if type === "password"}
     function create_if_block(ctx) {
     	let input;
-    	let input_id_value;
     	let mounted;
     	let dispose;
 
     	return {
     		c() {
     			input = element("input");
-    			attr(input, "id", input_id_value = /*id*/ ctx[1] === '' ? /*name*/ ctx[10] : /*id*/ ctx[1]);
-    			attr(input, "name", /*name*/ ctx[10]);
-    			attr(input, "placeholder", /*placeholder*/ ctx[2]);
-    			attr(input, "size", /*size*/ ctx[6]);
+    			attr(input, "id", /*name*/ ctx[9]);
+    			attr(input, "name", /*name*/ ctx[9]);
+    			attr(input, "placeholder", /*placeholder*/ ctx[1]);
+    			attr(input, "size", /*size*/ ctx[5]);
     			attr(input, "type", "password");
     			attr(input, "tabindex", "0");
     		},
@@ -603,32 +599,32 @@ var LabeledInput = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen(input, "input", /*input_input_handler*/ ctx[17]),
-    					listen(input, "input", /*dispatchInput*/ ctx[14]),
-    					listen(input, "keyup", /*handleKeyUp*/ ctx[13]),
-    					listen(input, "change", /*change_handler*/ ctx[18]),
-    					listen(input, "blur", /*blur_handler*/ ctx[19]),
-    					listen(input, "keypress", /*keypress_handler*/ ctx[20])
+    					listen(input, "input", /*input_input_handler*/ ctx[16]),
+    					listen(input, "input", /*dispatchInput*/ ctx[13]),
+    					listen(input, "keyup", /*handleKeyUp*/ ctx[12]),
+    					listen(input, "change", /*change_handler*/ ctx[17]),
+    					listen(input, "blur", /*blur_handler*/ ctx[18]),
+    					listen(input, "keypress", /*keypress_handler*/ ctx[19])
     				];
 
     				mounted = true;
     			}
     		},
     		p(ctx, dirty) {
-    			if (dirty[0] & /*id, name*/ 1026 && input_id_value !== (input_id_value = /*id*/ ctx[1] === '' ? /*name*/ ctx[10] : /*id*/ ctx[1])) {
-    				attr(input, "id", input_id_value);
+    			if (dirty[0] & /*name*/ 512) {
+    				attr(input, "id", /*name*/ ctx[9]);
     			}
 
-    			if (dirty[0] & /*name*/ 1024) {
-    				attr(input, "name", /*name*/ ctx[10]);
+    			if (dirty[0] & /*name*/ 512) {
+    				attr(input, "name", /*name*/ ctx[9]);
     			}
 
-    			if (dirty[0] & /*placeholder*/ 4) {
-    				attr(input, "placeholder", /*placeholder*/ ctx[2]);
+    			if (dirty[0] & /*placeholder*/ 2) {
+    				attr(input, "placeholder", /*placeholder*/ ctx[1]);
     			}
 
-    			if (dirty[0] & /*size*/ 64) {
-    				attr(input, "size", /*size*/ ctx[6]);
+    			if (dirty[0] & /*size*/ 32) {
+    				attr(input, "size", /*size*/ ctx[5]);
     			}
 
     			if (dirty[0] & /*value*/ 1 && input.value !== /*value*/ ctx[0]) {
@@ -655,10 +651,10 @@ var LabeledInput = (function () {
     	let dispose;
 
     	function select_block_type(ctx, dirty) {
-    		if (/*type*/ ctx[5] === "password") return create_if_block;
-    		if (/*type*/ ctx[5] === "area") return create_if_block_1;
-    		if (/*type*/ ctx[5] === "text") return create_if_block_2;
-    		if (/*type*/ ctx[5] === "number") return create_if_block_3;
+    		if (/*type*/ ctx[4] === "password") return create_if_block;
+    		if (/*type*/ ctx[4] === "area") return create_if_block_1;
+    		if (/*type*/ ctx[4] === "text") return create_if_block_2;
+    		if (/*type*/ ctx[4] === "number") return create_if_block_3;
     	}
 
     	let current_block_type = select_block_type(ctx);
@@ -668,15 +664,15 @@ var LabeledInput = (function () {
     		c() {
     			div = element("div");
     			span = element("span");
-    			t0 = text(/*errormessage*/ ctx[4]);
+    			t0 = text(/*errormessage*/ ctx[3]);
     			t1 = space();
     			if (if_block) if_block.c();
     			t2 = space();
     			label_1 = element("label");
-    			t3 = text(/*label*/ ctx[3]);
+    			t3 = text(/*label*/ ctx[2]);
     			this.c = noop;
     			attr(span, "class", "error");
-    			attr(label_1, "for", /*id*/ ctx[1]);
+    			attr(label_1, "for", /*name*/ ctx[9]);
     			attr(div, "class", "field");
     		},
     		m(target, anchor) {
@@ -690,12 +686,12 @@ var LabeledInput = (function () {
     			append(label_1, t3);
 
     			if (!mounted) {
-    				dispose = listen(label_1, "click", /*setFocus*/ ctx[12]);
+    				dispose = listen(label_1, "click", /*setFocus*/ ctx[11]);
     				mounted = true;
     			}
     		},
     		p(ctx, dirty) {
-    			if (dirty[0] & /*errormessage*/ 16) set_data(t0, /*errormessage*/ ctx[4]);
+    			if (dirty[0] & /*errormessage*/ 8) set_data(t0, /*errormessage*/ ctx[3]);
 
     			if (current_block_type === (current_block_type = select_block_type(ctx)) && if_block) {
     				if_block.p(ctx, dirty);
@@ -709,10 +705,10 @@ var LabeledInput = (function () {
     				}
     			}
 
-    			if (dirty[0] & /*label*/ 8) set_data(t3, /*label*/ ctx[3]);
+    			if (dirty[0] & /*label*/ 4) set_data(t3, /*label*/ ctx[2]);
 
-    			if (dirty[0] & /*id*/ 2) {
-    				attr(label_1, "for", /*id*/ ctx[1]);
+    			if (dirty[0] & /*name*/ 512) {
+    				attr(label_1, "for", /*name*/ ctx[9]);
     			}
     		},
     		i: noop,
@@ -731,7 +727,6 @@ var LabeledInput = (function () {
     }
 
     function instance($$self, $$props, $$invalidate) {
-    	let { id = '' } = $$props;
     	let { placeholder = '' } = $$props;
     	let { value = '' } = $$props;
     	let { label = '' } = $$props;
@@ -775,7 +770,7 @@ var LabeledInput = (function () {
 
     	function setFocus(e) {
     		console.log(e);
-    		let elem = e.target.closest('#' + id);
+    		let elem = e.target.closest(name);
     		console.log(elem);
     		elem.focus();
     	}
@@ -793,7 +788,7 @@ var LabeledInput = (function () {
     		if (shadowed) {
     			event.target.dispatchEvent(new CustomEvent(name, { composed: true, detail: details }));
     		} else {
-    			dispatch(id, details);
+    			dispatch(name, details);
     		}
     	}
 
@@ -866,24 +861,22 @@ var LabeledInput = (function () {
     	};
 
     	$$self.$$set = $$props => {
-    		if ('id' in $$props) $$invalidate(1, id = $$props.id);
-    		if ('placeholder' in $$props) $$invalidate(2, placeholder = $$props.placeholder);
+    		if ('placeholder' in $$props) $$invalidate(1, placeholder = $$props.placeholder);
     		if ('value' in $$props) $$invalidate(0, value = $$props.value);
-    		if ('label' in $$props) $$invalidate(3, label = $$props.label);
-    		if ('errormessage' in $$props) $$invalidate(4, errormessage = $$props.errormessage);
-    		if ('validator' in $$props) $$invalidate(15, validator = $$props.validator);
-    		if ('type' in $$props) $$invalidate(5, type = $$props.type);
-    		if ('size' in $$props) $$invalidate(6, size = $$props.size);
-    		if ('rows' in $$props) $$invalidate(7, rows = $$props.rows);
-    		if ('min' in $$props) $$invalidate(8, min = $$props.min);
-    		if ('max' in $$props) $$invalidate(9, max = $$props.max);
-    		if ('name' in $$props) $$invalidate(10, name = $$props.name);
-    		if ('shadowed' in $$props) $$invalidate(16, shadowed = $$props.shadowed);
+    		if ('label' in $$props) $$invalidate(2, label = $$props.label);
+    		if ('errormessage' in $$props) $$invalidate(3, errormessage = $$props.errormessage);
+    		if ('validator' in $$props) $$invalidate(14, validator = $$props.validator);
+    		if ('type' in $$props) $$invalidate(4, type = $$props.type);
+    		if ('size' in $$props) $$invalidate(5, size = $$props.size);
+    		if ('rows' in $$props) $$invalidate(6, rows = $$props.rows);
+    		if ('min' in $$props) $$invalidate(7, min = $$props.min);
+    		if ('max' in $$props) $$invalidate(8, max = $$props.max);
+    		if ('name' in $$props) $$invalidate(9, name = $$props.name);
+    		if ('shadowed' in $$props) $$invalidate(15, shadowed = $$props.shadowed);
     	};
 
     	return [
     		value,
-    		id,
     		placeholder,
     		label,
     		errormessage,
@@ -936,19 +929,18 @@ var LabeledInput = (function () {
     			create_fragment,
     			safe_not_equal,
     			{
-    				id: 1,
-    				placeholder: 2,
+    				placeholder: 1,
     				value: 0,
-    				label: 3,
-    				errormessage: 4,
-    				validator: 15,
-    				type: 5,
-    				size: 6,
-    				rows: 7,
-    				min: 8,
-    				max: 9,
-    				name: 10,
-    				shadowed: 16
+    				label: 2,
+    				errormessage: 3,
+    				validator: 14,
+    				type: 4,
+    				size: 5,
+    				rows: 6,
+    				min: 7,
+    				max: 8,
+    				name: 9,
+    				shadowed: 15
     			},
     			null,
     			[-1, -1]
@@ -968,7 +960,6 @@ var LabeledInput = (function () {
 
     	static get observedAttributes() {
     		return [
-    			"id",
     			"placeholder",
     			"value",
     			"label",
@@ -984,17 +975,8 @@ var LabeledInput = (function () {
     		];
     	}
 
-    	get id() {
-    		return this.$$.ctx[1];
-    	}
-
-    	set id(id) {
-    		this.$$set({ id });
-    		flush();
-    	}
-
     	get placeholder() {
-    		return this.$$.ctx[2];
+    		return this.$$.ctx[1];
     	}
 
     	set placeholder(placeholder) {
@@ -1012,7 +994,7 @@ var LabeledInput = (function () {
     	}
 
     	get label() {
-    		return this.$$.ctx[3];
+    		return this.$$.ctx[2];
     	}
 
     	set label(label) {
@@ -1021,7 +1003,7 @@ var LabeledInput = (function () {
     	}
 
     	get errormessage() {
-    		return this.$$.ctx[4];
+    		return this.$$.ctx[3];
     	}
 
     	set errormessage(errormessage) {
@@ -1030,7 +1012,7 @@ var LabeledInput = (function () {
     	}
 
     	get validator() {
-    		return this.$$.ctx[15];
+    		return this.$$.ctx[14];
     	}
 
     	set validator(validator) {
@@ -1039,7 +1021,7 @@ var LabeledInput = (function () {
     	}
 
     	get type() {
-    		return this.$$.ctx[5];
+    		return this.$$.ctx[4];
     	}
 
     	set type(type) {
@@ -1048,7 +1030,7 @@ var LabeledInput = (function () {
     	}
 
     	get size() {
-    		return this.$$.ctx[6];
+    		return this.$$.ctx[5];
     	}
 
     	set size(size) {
@@ -1057,7 +1039,7 @@ var LabeledInput = (function () {
     	}
 
     	get rows() {
-    		return this.$$.ctx[7];
+    		return this.$$.ctx[6];
     	}
 
     	set rows(rows) {
@@ -1066,7 +1048,7 @@ var LabeledInput = (function () {
     	}
 
     	get min() {
-    		return this.$$.ctx[8];
+    		return this.$$.ctx[7];
     	}
 
     	set min(min) {
@@ -1075,7 +1057,7 @@ var LabeledInput = (function () {
     	}
 
     	get max() {
-    		return this.$$.ctx[9];
+    		return this.$$.ctx[8];
     	}
 
     	set max(max) {
@@ -1084,7 +1066,7 @@ var LabeledInput = (function () {
     	}
 
     	get name() {
-    		return this.$$.ctx[10];
+    		return this.$$.ctx[9];
     	}
 
     	set name(name) {
@@ -1093,7 +1075,7 @@ var LabeledInput = (function () {
     	}
 
     	get shadowed() {
-    		return this.$$.ctx[16];
+    		return this.$$.ctx[15];
     	}
 
     	set shadowed(shadowed) {
