@@ -27,12 +27,12 @@ Import the component.
 
 Use the component.
 ```
-    <LabeledInput name="prename"
+    <LabeledInput id="prename"
                   placeholder="Your prename"
                   label="Prename:"
                   bind:value={prename}/>
                   
-    <LabeledInput name="interval"
+    <LabeledInput id="interval"
                 placeholder="Interval in days"
                 label="Interval :"
                 type="number"
@@ -42,8 +42,7 @@ Use the component.
                 on:keypress={handleKeys}
                 bind:value={daysInterval} />
                 
-    <LabeledInput on:error={(e)=>{errormessage = e.detail}}
-                name="description"
+    <LabeledInput id="description"
                 placeholder="Description"
                 label="Description:"
                 validator={descriptionValidator}
@@ -94,7 +93,7 @@ Events:
 </head>
 <body>
 <hr>
-<labeled-input name="prename"
+<labeled-input id="prename"
                placeholder="Your prename"
                label="Prename:"
                value=""></labeled-input>
@@ -103,7 +102,7 @@ Events:
                label="Name:"
                value=""></labeled-input><hr>
                
-<labeled-input name="interval"
+<labeled-input id="interval"
                 placeholder="Interval in days"
                 label="Interval :"
                 type="number"
@@ -111,7 +110,7 @@ Events:
                 max="21"
                 value="5"></labeled-input>
                 
-<labeled-input name="description"
+<labeled-input id="description"
                 placeholder="Description"
                 label="Description:"
                 type="area"

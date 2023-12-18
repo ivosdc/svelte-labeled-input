@@ -17,7 +17,7 @@ export default {
             tag: 'labeled-input',
             emitCss: true,
             css: (css) => {
-                css.write('dist/build/labeled-input.css');
+                css.write('labeled-input.css');
             }
         }),
         resolve({

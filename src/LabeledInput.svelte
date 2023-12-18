@@ -98,6 +98,7 @@
 
 
 <style>
+
     :root {
         --textarea-border: #e1e1e1;
         --textarea-border-focus: #bfbfbf;
