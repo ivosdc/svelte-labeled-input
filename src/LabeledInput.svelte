@@ -15,6 +15,8 @@
     export let min = '';
     export let max = '';
 
+    export let shadowed = false;
+
     const dispatch = createEventDispatcher();
 
     let error = '';
@@ -30,7 +32,7 @@
             } else {
                 error = violations;
             }
-            dispatch("error", error);
+            customDispatch(event, "error", error);
             return false;
         } else {
             return true;
@@ -43,14 +45,26 @@
     }
 
     function handleKeyUp(e) {
-        dispatch("keyup", {
+        customDispatch(e, "keyup", {
             key: e.key
         });
     }
 
     function dispatchInput(e) {
         validate(e);
-        dispatch('input', value)
+        customDispatch(e, 'input', value)
+    }
+
+    function customDispatch(event, name, details) {
+        if (shadowed) {
+            event.target.dispatchEvent(
+                new CustomEvent(name, {
+                    composed: true,
+                    detail: details
+                }))
+        } else {
+            dispatch(name, details);
+        }
     }
 
 </script>
