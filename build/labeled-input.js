@@ -405,12 +405,12 @@ var LabeledInput = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen(input, "input", /*input_input_handler_2*/ ctx[27]),
+    					listen(input, "input", /*input_input_handler_2*/ ctx[28]),
     					listen(input, "input", /*dispatchInput*/ ctx[13]),
     					listen(input, "keyup", /*handleKeyUp*/ ctx[12]),
-    					listen(input, "change", /*change_handler_3*/ ctx[28]),
-    					listen(input, "blur", /*blur_handler_3*/ ctx[29]),
-    					listen(input, "keypress", /*keypress_handler_3*/ ctx[30])
+    					listen(input, "change", /*change_handler_3*/ ctx[29]),
+    					listen(input, "blur", /*blur_handler_3*/ ctx[30]),
+    					listen(input, "keypress", /*keypress_handler_3*/ ctx[31])
     				];
 
     				mounted = true;
@@ -449,7 +449,7 @@ var LabeledInput = (function () {
     	};
     }
 
-    // (77:30) 
+    // (91:30) 
     function create_if_block_2(ctx) {
     	let input;
     	let mounted;
@@ -471,12 +471,12 @@ var LabeledInput = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen(input, "input", /*input_input_handler_1*/ ctx[23]),
+    					listen(input, "input", /*input_input_handler_1*/ ctx[24]),
     					listen(input, "input", /*dispatchInput*/ ctx[13]),
     					listen(input, "keyup", /*handleKeyUp*/ ctx[12]),
-    					listen(input, "change", /*change_handler_2*/ ctx[24]),
-    					listen(input, "blur", /*blur_handler_2*/ ctx[25]),
-    					listen(input, "keypress", /*keypress_handler_2*/ ctx[26])
+    					listen(input, "change", /*change_handler_2*/ ctx[25]),
+    					listen(input, "blur", /*blur_handler_2*/ ctx[26]),
+    					listen(input, "keypress", /*keypress_handler_2*/ ctx[27])
     				];
 
     				mounted = true;
@@ -511,7 +511,7 @@ var LabeledInput = (function () {
     	};
     }
 
-    // (69:30) 
+    // (83:30) 
     function create_if_block_1(ctx) {
     	let textarea;
     	let mounted;
@@ -533,12 +533,12 @@ var LabeledInput = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen(textarea, "input", /*textarea_input_handler*/ ctx[19]),
+    					listen(textarea, "input", /*textarea_input_handler*/ ctx[20]),
     					listen(textarea, "input", /*dispatchInput*/ ctx[13]),
     					listen(textarea, "keyup", /*handleKeyUp*/ ctx[12]),
-    					listen(textarea, "change", /*change_handler_1*/ ctx[20]),
-    					listen(textarea, "blur", /*blur_handler_1*/ ctx[21]),
-    					listen(textarea, "keypress", /*keypress_handler_1*/ ctx[22])
+    					listen(textarea, "change", /*change_handler_1*/ ctx[21]),
+    					listen(textarea, "blur", /*blur_handler_1*/ ctx[22]),
+    					listen(textarea, "keypress", /*keypress_handler_1*/ ctx[23])
     				];
 
     				mounted = true;
@@ -577,7 +577,7 @@ var LabeledInput = (function () {
     	};
     }
 
-    // (61:4) {#if type === "password"}
+    // (75:4) {#if type === "password"}
     function create_if_block(ctx) {
     	let input;
     	let mounted;
@@ -599,12 +599,12 @@ var LabeledInput = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen(input, "input", /*input_input_handler*/ ctx[15]),
+    					listen(input, "input", /*input_input_handler*/ ctx[16]),
     					listen(input, "input", /*dispatchInput*/ ctx[13]),
     					listen(input, "keyup", /*handleKeyUp*/ ctx[12]),
-    					listen(input, "change", /*change_handler*/ ctx[16]),
-    					listen(input, "blur", /*blur_handler*/ ctx[17]),
-    					listen(input, "keypress", /*keypress_handler*/ ctx[18])
+    					listen(input, "change", /*change_handler*/ ctx[17]),
+    					listen(input, "blur", /*blur_handler*/ ctx[18]),
+    					listen(input, "keypress", /*keypress_handler*/ ctx[19])
     				];
 
     				mounted = true;
@@ -742,6 +742,7 @@ var LabeledInput = (function () {
     	let { rows = '2' } = $$props;
     	let { min = '' } = $$props;
     	let { max = '' } = $$props;
+    	let { shadowed = false } = $$props;
     	const dispatch = createEventDispatcher();
     	let error = '';
 
@@ -760,7 +761,7 @@ var LabeledInput = (function () {
     				error = violations;
     			}
 
-    			dispatch("error", error);
+    			customDispatch(event, "error", error);
     			return false;
     		} else {
     			return true;
@@ -773,12 +774,20 @@ var LabeledInput = (function () {
     	}
 
     	function handleKeyUp(e) {
-    		dispatch("keyup", { key: e.key });
+    		customDispatch(e, "keyup", { key: e.key });
     	}
 
     	function dispatchInput(e) {
-    		validate();
-    		dispatch('input', value);
+    		validate(e);
+    		customDispatch(e, 'input', value);
+    	}
+
+    	function customDispatch(event, name, details) {
+    		if (shadowed) {
+    			event.target.dispatchEvent(new CustomEvent(name, { composed: true, detail: details }));
+    		} else {
+    			dispatch(name, details);
+    		}
     	}
 
     	function input_input_handler() {
@@ -861,6 +870,7 @@ var LabeledInput = (function () {
     		if ('rows' in $$props) $$invalidate(7, rows = $$props.rows);
     		if ('min' in $$props) $$invalidate(8, min = $$props.min);
     		if ('max' in $$props) $$invalidate(9, max = $$props.max);
+    		if ('shadowed' in $$props) $$invalidate(15, shadowed = $$props.shadowed);
     	};
 
     	return [
@@ -879,6 +889,7 @@ var LabeledInput = (function () {
     		handleKeyUp,
     		dispatchInput,
     		validator,
+    		shadowed,
     		input_input_handler,
     		change_handler,
     		blur_handler,
@@ -926,7 +937,8 @@ var LabeledInput = (function () {
     				size: 6,
     				rows: 7,
     				min: 8,
-    				max: 9
+    				max: 9,
+    				shadowed: 15
     			},
     			null,
     			[-1, -1]
@@ -956,7 +968,8 @@ var LabeledInput = (function () {
     			"size",
     			"rows",
     			"min",
-    			"max"
+    			"max",
+    			"shadowed"
     		];
     	}
 
@@ -1056,6 +1069,15 @@ var LabeledInput = (function () {
 
     	set max(max) {
     		this.$$set({ max });
+    		flush();
+    	}
+
+    	get shadowed() {
+    		return this.$$.ctx[15];
+    	}
+
+    	set shadowed(shadowed) {
+    		this.$$set({ shadowed });
     		flush();
     	}
     }
