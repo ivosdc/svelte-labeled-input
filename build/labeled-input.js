@@ -770,10 +770,10 @@ var LabeledInput = (function () {
 
     	function setFocus(e) {
     		console.log(e);
-    		let elem = e.target.closest('input').querySelector(`[name=${name}]`);
+    		let elem = e.target.closest('input').querySelector(`[id=${name}]`);
 
     		if (elem === null) {
-    			elem = e.target.closest('textarea').querySelector(`[name=${name}]`);
+    			elem = e.target.closest('textarea').querySelector(`[id=${name}]`);
     		}
 
     		console.log(elem);
