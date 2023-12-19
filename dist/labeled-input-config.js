@@ -6,7 +6,7 @@ console.log(prename)
 prename.setAttribute('shadowed', 'true');
 
 
-prename.addEventListener('input', (e) => {
+prename.addEventListener('keyup', (e) => {
     console.log(e.srcElement.value);
 });
 
