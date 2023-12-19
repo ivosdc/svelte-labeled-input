@@ -41,11 +41,7 @@
 
     function setFocus(e) {
         console.log(e)
-        let elem = e.target.closest('#' + name);
-        console.log(elem)
-
-        elem= document.querySelector(`[id="prename"]`);
-        console.log(elem)
+        let elem= document.querySelector(`[id="${name}"]`);
         elem.focus();
     }
 
