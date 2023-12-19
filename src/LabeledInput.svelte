@@ -39,8 +39,9 @@
         }
     }
 
-    function setFocus(e) {
-        let elem= document.querySelector('[id="' + name + '"]');
+    function setFocus(e, elemId) {
+        let elem= e.target.closest('[id="' + elemId + '"]');
+        console.log(elem)
         elem.focus();
     }
 
@@ -55,15 +56,15 @@
         customDispatch(e, 'input', value)
     }
 
-    function customDispatch(event, name, details) {
+    function customDispatch(event, eventName, details) {
         if (shadowed) {
             event.target.dispatchEvent(
-                new CustomEvent(name, {
+                new CustomEvent(eventName, {
                     composed: true,
                     detail: details
                 }))
         } else {
-            dispatch(name, details);
+            dispatch(eventName, details);
         }
     }
 
@@ -107,7 +108,7 @@
                on:keypress={(e) => {dispatch('keypress', value)}}
                type="number" tabindex="0"/>
     {/if}
-    <label on:click={setFocus} for={name}>{label}</label>
+    <label on:click={(e) => {setFocus(e, name)}} for={name}>{label}</label>
 </div>
 
 
