@@ -449,7 +449,7 @@ var LabeledInput = (function () {
     	};
     }
 
-    // (91:30) 
+    // (92:30) 
     function create_if_block_2(ctx) {
     	let input;
     	let mounted;
@@ -511,7 +511,7 @@ var LabeledInput = (function () {
     	};
     }
 
-    // (83:30) 
+    // (84:30) 
     function create_if_block_1(ctx) {
     	let textarea;
     	let mounted;
@@ -577,7 +577,7 @@ var LabeledInput = (function () {
     	};
     }
 
-    // (75:4) {#if type === "password"}
+    // (76:4) {#if type === "password"}
     function create_if_block(ctx) {
     	let input;
     	let mounted;
@@ -727,7 +727,8 @@ var LabeledInput = (function () {
     }
 
     function setFocus(e, elemId) {
-    	let elem = document.querySelector('[id="' + elemId + '"]');
+    	let elem = e.target.closest('[id="' + elemId + '"]');
+    	console.log(elem);
     	elem.focus();
     }
 
