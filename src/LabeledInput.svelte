@@ -40,8 +40,7 @@
     }
 
     function setFocus(e) {
-        console.log(e)
-        let elem= document.querySelector(`[id="${name}"]`);
+        let elem= document.querySelector('[id="' + name + '"]');
         elem.focus();
     }
 
