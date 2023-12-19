@@ -5,12 +5,12 @@
     --border-bottom: #bfbfbf;
     --border-bottom-hover: #4A849F;
     --font-size: 1em;
-    --error-text: #999999;
+    --text-light: #999999;
 }
 
 .error {
     width: 100%;
-    color: var(--error-text);
+    color: var(--text-light);
     font-size: 12px;
     min-height: 14px;
     max-height: 14px;
@@ -34,7 +34,7 @@ label {
     position: relative;
     font-size: 0.8em;
     top: -1px;
-    color: var(--border-bottom);
+    color: var(--text-light);
     max-width: 0;
     height: 21px;
     white-space: nowrap;
