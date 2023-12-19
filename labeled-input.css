@@ -2,14 +2,15 @@
     --textarea-border: #e1e1e1;
     --textarea-border-focus: #bfbfbf;
     --font-color: #333333;
-    --border-bottom: #999999;
+    --border-bottom: #bfbfbf;
     --border-bottom-hover: #4A849F;
     --font-size: 1em;
+    --error-text: #999999;
 }
 
 .error {
     width: 100%;
-    color: var(--border-bottom);
+    color: var(--error-text);
     font-size: 12px;
     min-height: 14px;
     max-height: 14px;
