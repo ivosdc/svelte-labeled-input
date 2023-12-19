@@ -6,7 +6,7 @@ console.log(prename)
 prename.setAttribute('shadowed', 'true');
 
 let prenameInput = document.querySelector(`[id="prename-input"]`);
-onsole.log(prenameInput)
+console.log(prenameInput)
 /*
 prename.addEventListener('input', (e) => {
     console.log('input');
