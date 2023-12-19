@@ -7,6 +7,6 @@ prename.setAttribute('shadowed', 'true');
 
 
 prename.addEventListener('input', (e) => {
-    console.log(e);
+    console.log(e.srcElement.value);
 });
 
