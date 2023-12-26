@@ -16,9 +16,6 @@ css3 layout label transition input text field validates errormessage password st
 npm install svelte-labeled-input
 ```
 
-[![Donate](https://github.com/ivosdc/svelte-generic-crud-table/raw/master/assets/donate.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7V5M288MUT7GE&source=url)
-
-
 # Usage
 Import the component.
 ```
@@ -55,13 +52,13 @@ Use the component.
 
 The styled and labeled input "html"-element offers the optional parameters:
 ```
-    export let name;        // id and name of the component in DOM
-    export let placeholder; // Placeholder for no input value
-    export let value;       // Value of the input field. 
-    export let label;       // Label of the input field
-    export let type         // default "text". ["text", "area", "number", "password"]
-    export let validator;   // text validation function. Returns [true || false]. Dispatches an Error-Event on `false`
-    export let errormessage;// Errormessage for validation error
+    name;        // id and name of the component in DOM
+    placeholder; // Placeholder for no input value
+    value;       // Value of the input field. 
+    label;       // Label of the input field
+    type         // default "text". ["text", "area", "number", "password"]
+    validator;   // text validation function. Returns [true || false]. Dispatches an Error-Event on `false`
+    errormessage;// Errormessage for validation error
     
     min, max for inpt{type=number}
     
@@ -72,11 +69,11 @@ The styled and labeled input "html"-element offers the optional parameters:
 
 Events:
 ```
-    on:input={...}    // checks the input with the `validator` function and fires input-event with the `value`
-    on:keyup={...}    // fires input-event with the `key`
-    on:change={...}   // fires change-event with the `value`
-    on:blur={...}     // fires blur-event with the `value`
-    on:keypress={...} // fires keypress-event with the `value`
+    input  // checks the input with the `validator` function and fires input-event with the `value`
+    keyup  // fires input-event with the `key`
+    change  // fires change-event with the `value`
+    blur  // fires blur-event with the `value`
+    keypress  // fires keypress-event with the `value`
 ```
 
 ### Web-Component
@@ -93,30 +90,37 @@ Events:
 </head>
 <body>
 <hr>
-<labeled-input name="prename"
+<labeled-input id="prename"
+               name="prename-input"
                placeholder="Your prename"
                label="Prename:"
+               size="30"
                value=""></labeled-input>
 <labeled-input name="fullname"
                placeholder="Your family name"
                label="Name:"
-               value=""></labeled-input><hr>
-               
-<labeled-input name="interval"
-                placeholder="Interval in days"
-                label="Interval :"
-                type="number"
-                min="1"
-                max="21"
-                value="5"></labeled-input>
-                
-<labeled-input name="description"
-                placeholder="Description"
-                label="Description:"
-                type="area"
-                size="50"
-                rows="4"
-                value="I'm a description."></labeled-input>
+               size="30"
+               value=""></labeled-input>
+
+<div style="width: 60px;">
+    <labeled-input id="interval"
+                   name="interval-input"
+                   placeholder="Interval in days"
+                   label="Interval :"
+                   type="number"
+                   min="1"
+                   max="21"
+                   value="5"></labeled-input>
+</div>
+
+<labeled-input id="description"
+               name="description-input"
+               placeholder="Description"
+               label="Description:"
+               type="area"
+               size="50"
+               rows="4"
+               value=""></labeled-input>
 </body>
 <script>
 </script>
